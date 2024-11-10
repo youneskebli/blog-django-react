@@ -1,6 +1,6 @@
-# Search Atlas Toy Project: Blog Application
+# Toy Project: Blog Application
 
-Welcome to the **Search Atlas Toy Project**! This project serves as a demonstration of your Django and Python expertise, and optionally your frontend React and containerization skills. Below are the details of the project, setup instructions, features, and testing requirements.
+Welcome, In this project, I demonstrate my expertise in Django, Python, and optionally React and containerization. Below are the details of the project, setup instructions, features, and testing requirements, showcasing my skills and solving real-world challenges.
 
 ---
 
@@ -8,12 +8,17 @@ Welcome to the **Search Atlas Toy Project**! This project serves as a demonstrat
 1. [Project Overview](#project-overview)
 2. [Features](#features)
 3. [Setup Instructions](#setup-instructions)
+4. [Makefile Commands](#makefile-commands)
+5. [Docker and Kubernetes (Optional)](#docker-and-kubernetes-optional)
+6. [Frontend (Optional - React)](#frontend-optional---react)
+7. [Screenshots](#screenshots)
+8. [Testing](#testing)
 
 ---
 
 ## Project Overview
 
-This is a **Blog Application** designed to allow writers and editors to manage articles effectively. The application implements core Django features such as authentication, class-based views, and model relationships, while adhering to Django and Python best practices. Editors can approve or reject articles, and writers can create and edit their articles.
+This is a **Blog Application** that I developed to allow writers and editors to manage articles effectively. The application implements core Django features such as authentication, class-based views, and model relationships. It adheres to Django and Python best practices, and it offers editors the ability to approve or reject articles while allowing writers to create and edit their articles.
 
 ---
 
