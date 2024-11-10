@@ -1,6 +1,6 @@
 # Blog Application
 
-Welcome to the **Blog Application**! This project demonstrates the capabilities of a blog platform built with Django for the backend and optionally React for the frontend.
+Welcome to the **Blog Application**! This project demonstrates the capabilities of a blog platform built with Django for the backend and  React for the frontend.
 
 ---
 
@@ -28,6 +28,7 @@ This is a **Blog Application** designed to allow writers and editors to manage a
 - **Dashboard**: Displays a summary of writers and the number of articles they’ve written.
 - **Article Management**: Writers can create, edit, and submit articles.
 - **Article Approval**: Editors can review and approve or reject submitted articles.
+- **Writer Article Detail Page**: can edit title or/and content of an article
 
 ---
 
@@ -68,8 +69,7 @@ You can containerize the application using Docker. For Kubernetes, deploy using 
 
 ## Frontend (Optional - React)
 
-If you choose to implement a frontend using React, you can follow the instructions provided in the `frontend/README.md`.
-
+the frontend of this project is implemented using reactjs 
 ---
 
 ## Screenshots
@@ -92,7 +92,6 @@ Here are some screenshots showing the key pages of the application:
   ![Article Approval](./images/Articles_Edited_Page.png)
 
 
-Make sure that the images folder contains the actual screenshots and that the paths to the images match their location in your project.
 
 ---
 
