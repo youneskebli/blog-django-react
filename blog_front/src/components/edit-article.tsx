@@ -14,7 +14,11 @@ const EditArticle = ({ article }: { article: Article }) => {
     error: updateError,
     isPending,
   } = useMutation({
-    mutationFn: patchArticle,
+    mutationFn: () => patchArticle({
+      title,
+      content,
+      id: article.id
+    }),
     onSuccess: () => {
       queryClient.invalidateQueries();
     },
@@ -25,12 +29,12 @@ const EditArticle = ({ article }: { article: Article }) => {
 
   return (
     <>
-      <div className="flex items-center gap-4 mb-10">
+      <div className="flex items-center gap-4 mb-10 w-[5rem]">
         <input
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="input text-3xl font-bold"
+          className="input text-3xl font-bold full"
         />
         {article.title !== title && (
           <button
@@ -60,7 +64,7 @@ const EditArticle = ({ article }: { article: Article }) => {
 
       <div className="flex items-start gap-4">
         <textarea
-          rows={10}
+          rows={15}
           value={content}
           onChange={(e) => setContent(e.target.value)}
           className="text-xl textarea w-full"></textarea>

@@ -2,7 +2,10 @@ type Article = {
   id: number;
   title: string;
   content: string;
+  status: Status
 };
+
+export type Status = "PENDING" | "APPROVED" | "REJECTED"
 
 export default Article;
 
