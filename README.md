@@ -1,10 +1,11 @@
-# Toy Project: Blog Application
+# Blog Application
 
-Welcome, In this project, I demonstrate my expertise in Django, Python, and optionally React and containerization. Below are the details of the project, setup instructions, features, and testing requirements, showcasing my skills and solving real-world challenges.
+Welcome to the **Blog Application**! This project demonstrates the capabilities of a blog platform built with Django for the backend and optionally React for the frontend.
 
 ---
 
 ## Table of Contents
+
 1. [Project Overview](#project-overview)
 2. [Features](#features)
 3. [Setup Instructions](#setup-instructions)
@@ -18,38 +19,86 @@ Welcome, In this project, I demonstrate my expertise in Django, Python, and opti
 
 ## Project Overview
 
-This is a **Blog Application** that I developed to allow writers and editors to manage articles effectively. The application implements core Django features such as authentication, class-based views, and model relationships. It adheres to Django and Python best practices, and it offers editors the ability to approve or reject articles while allowing writers to create and edit their articles.
+This is a **Blog Application** designed to allow writers and editors to manage articles effectively. The application implements core Django features such as authentication, class-based views, and model relationships, while adhering to Django and Python best practices. Editors can approve or reject articles, and writers can create and edit their articles.
 
 ---
 
 ## Features
 
-### Backend (Django)
-- **Dashboard**: Displays a summary of writers, showing the total number of articles they've written and how many were written in the last 30 days.
-- **Article Creation**: Writers can create new articles.
-- **Writer Article Detail**: Writers can edit the title and content of articles they've written. The status of the article (e.g., Pending, Approved, Rejected) is read-only.
-- **Article Approval**: Editors can view and approve or reject articles via a simple interface.
-- **Edited Articles**: Editors can see all articles they've approved or rejected.
-
-### Models
-
-#### `Article`
-- `created_at` (datetime): Timestamp for when the article was created.
-- `title` (string): Title of the article.
-- `content` (text): Body content of the article.
-- `status` (string): Status of the article, can be "Pending", "Approved", or "Rejected".
-- `written_by` (ForeignKey to Writer): The writer of the article.
-- `edited_by` (ForeignKey to Writer): The editor who approved or rejected the article.
-
-#### `Writer`
-- `is_editor` (boolean): Indicates if the writer is also an editor.
-- `name` (string): Name of the writer, connected to the Django User model.
+- **Dashboard**: Displays a summary of writers and the number of articles they’ve written.
+- **Article Management**: Writers can create, edit, and submit articles.
+- **Article Approval**: Editors can review and approve or reject submitted articles.
 
 ---
 
 ## Setup Instructions
 
-### 1. Clone the Repository
+1. **Clone the repository:**
+    ```bash
+    git clone https://github.com/yourusername/blog-application
+    cd blog-application
+    ```
+
+2. **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. **Run the application:**
+    ```bash
+    python manage.py runserver
+    ```
+
+---
+
+## Makefile Commands
+
+Use the following Makefile commands to manage the project easily:
+
+- `make runserver` - Starts the Django development server.
+- `make test` - Runs all tests for the application.
+
+---
+
+## Docker and Kubernetes (Optional)
+
+You can containerize the application using Docker. For Kubernetes, deploy using the provided YAML files.
+
+---
+
+## Frontend (Optional - React)
+
+If you choose to implement a frontend using React, you can follow the instructions provided in the `frontend/README.md`.
+
+---
+
+## Screenshots
+
+Here are some screenshots showing the key pages of the application:
+
+- **Dashboard statistics :**
+  ![Dashboard](./images/Dashboard_statistics.png)
+
+- **Article Creation:**
+  ![Article Creation](./images/Add_Article.png)
+
+- **Article Approval:**
+  ![Article Approval](./images/Article_Approval_Page.png)
+
+- **Writer Article Detail Page:**
+  ![Article Creation](./images/Writer_Article_Detail_Page.png)
+
+- **Articles Edited Page :**
+  ![Article Approval](./images/Articles_Edited_Page.png)
+
+
+Make sure that the images folder contains the actual screenshots and that the paths to the images match their location in your project.
+
+---
+
+## Testing
+
+Run the test suite using:
+
 ```bash
-git clone https://github.com/yourusername/blog-application
-cd blog-application
+python manage.py test
