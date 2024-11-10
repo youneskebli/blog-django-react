@@ -1,0 +1,31 @@
+replicaCount: 2
+
+image:
+  repository: youneskeblikebli/blog-app
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+# Kubernetes service configuration
+service:
+  type: LoadBalancer
+  port: 8000
+
+ingress:
+  enabled: true
+  annotations: {}
+  hosts:
+    - host: http://127.0.0.1:8000.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+
+env:
+  DJANGO_SECRET_KEY: "your-django-secret-key"
+  DATABASE_URL: "postgres://user:password@host:5432/dbname"
+
+autoscaling:
+  enabled: true  # Set to false if you do not want to enable autoscaling
+  minReplicas: 1  # Minimum number of replicas
+  maxReplicas: 3  # Maximum number of replicas
+  targetCPUUtilizationPercentage: 80  # CPU utilization target for autoscaling
