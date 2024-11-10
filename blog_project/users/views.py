@@ -7,6 +7,7 @@ from rest_framework.views import APIView
 from .serializers import LoginSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 from blog.models import Writer
+from .mixins import TokenMixin
 
 
 class RegisterView(generics.CreateAPIView):
@@ -29,7 +30,7 @@ class RegisterView(generics.CreateAPIView):
         )
 
 
-class LoginView(APIView):
+class LoginView(TokenMixin,APIView):
     permission_classes = [AllowAny]
     serializer_class = LoginSerializer
 
@@ -43,14 +44,11 @@ class LoginView(APIView):
         )
 
         if user is not None:
-            refresh = RefreshToken.for_user(user)
-            access_token = str(refresh.access_token)
-            refresh_token = str(refresh)
-
+            tokens = self.get_tokens_for_user(user)
             return Response(
                 {
-                    "access_token": access_token,
-                    "refresh_token": refresh_token,
+                    "access_token": tokens["access_token"],
+                    "refresh_token": tokens["refresh_token"],
                     "user_id": user.pk,
                     "email": user.email,
                     "name": user.writer.name,
