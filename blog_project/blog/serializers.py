@@ -40,9 +40,7 @@ class ArticleDetailSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
 
-        if 'status' in validated_data:
+        if "status" in validated_data:
             raise serializers.ValidationError({"status": "Status cannot be updated"})
 
         return super().update(instance, validated_data)
-
-

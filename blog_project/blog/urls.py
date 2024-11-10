@@ -9,12 +9,8 @@ from .views import (
 
 urlpatterns = [
     path("", DashboardAPIView.as_view(), name="dashboard"),
-    path("article/create/",
-         ArticleCreateAPIView.as_view(),
-         name="article-create"),
-    path("article/<int:id>/",
-         ArticleDetailAPIView.as_view(),
-         name="article-detail"),
+    path("article/create/", ArticleCreateAPIView.as_view(), name="article-create"),
+    path("article/<int:id>/", ArticleDetailAPIView.as_view(), name="article-detail"),
     path(
         "articles/approval/",
         ArticleApprovalAPIView.as_view(),

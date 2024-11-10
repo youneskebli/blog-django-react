@@ -5,7 +5,6 @@ from rest_framework.permissions import AllowAny
 from django.contrib.auth import authenticate
 from rest_framework.views import APIView
 from .serializers import LoginSerializer
-from rest_framework_simplejwt.tokens import RefreshToken
 from blog.models import Writer
 from .mixins import TokenMixin
 
@@ -30,7 +29,7 @@ class RegisterView(generics.CreateAPIView):
         )
 
 
-class LoginView(TokenMixin,APIView):
+class LoginView(TokenMixin, APIView):
     permission_classes = [AllowAny]
     serializer_class = LoginSerializer
 

@@ -4,12 +4,7 @@ from users.models import CustomUser
 
 # Create your models here.
 class Writer(CustomUser):
-    name = models.CharField(
-        max_length=255,
-        default="",
-        null=False,
-        blank=False
-    )
+    name = models.CharField(max_length=255, default="", null=False, blank=False)
     is_editor = models.BooleanField(default=False)
 
     def __str__(self):

@@ -13,7 +13,6 @@ from .permissions import IsWriterOrEditor, IsEditor, IsWriter
 
 # Dashboard View: Writer Summary
 class DashboardAPIView(generics.ListAPIView):
-
     permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
@@ -23,27 +22,25 @@ class DashboardAPIView(generics.ListAPIView):
             total_articles=Count("articles_written"),
             articles_last_30_days=Count(
                 "articles_written",
-                filter=Q(articles_written__created_at__gte=thirty_days_ago)
-            )
+                filter=Q(articles_written__created_at__gte=thirty_days_ago),
+            ),
         ).values("name", "total_articles", "articles_last_30_days")
 
         return Response(writer_stats)
 
-class ArticleCreateAPIView(generics.CreateAPIView):
 
+class ArticleCreateAPIView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated, IsWriter]
     serializer_class = ArticleSerializer
 
     def perform_create(self, serializer):
-
         serializer.save(written_by=self.request.user.writer)
 
 
 class ArticleDetailAPIView(generics.RetrieveUpdateAPIView):
-
     permission_classes = [IsAuthenticated, IsWriterOrEditor]
     serializer_class = ArticleDetailSerializer
-    lookup_field = 'id'
+    lookup_field = "id"
 
     def get_queryset(self):
 
@@ -54,30 +51,34 @@ class ArticleDetailAPIView(generics.RetrieveUpdateAPIView):
     def patch(self, request, *args, **kwargs):
 
         if "status" in request.data:
-            return Response({"error": "Status field is read-only"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"error": "Status field is read-only"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
         return super().patch(request, *args, **kwargs)
 
 
 class ArticleApprovalAPIView(APIView):
-
     permission_classes = [IsAuthenticated, IsEditor]
 
     def get(self, request):
-
         articles = Article.objects.filter(status=Article.Status.PENDING)
         serializer = ArticleSerializer(articles, many=True)
         return Response(serializer.data)
 
     def post(self, request, article_id):
-
         article = get_object_or_404(Article, id=article_id)
         action = request.data.get("action")
 
         if action not in ["approve", "reject"]:
-            return Response({"error": "Invalid action"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"error": "Invalid action"}, status=status.HTTP_400_BAD_REQUEST
+            )
 
-        article.status = Article.Status.APPROVED if action == "approve" else Article.Status.REJECTED
+        article.status = (
+            Article.Status.APPROVED if action == "approve" else Article.Status.REJECTED
+        )
         article.edited_by = request.user.writer
         article.save()
 
@@ -85,13 +86,11 @@ class ArticleApprovalAPIView(APIView):
 
 
 class ArticlesEditedAPIView(generics.ListAPIView):
-
     permission_classes = [IsAuthenticated, IsEditor]
     serializer_class = ArticleSerializer
 
     def get_queryset(self):
-
         return Article.objects.filter(
             edited_by=self.request.user.writer,
-            status__in=[Article.Status.APPROVED, Article.Status.REJECTED]
+            status__in=[Article.Status.APPROVED, Article.Status.REJECTED],
         )
